@@ -1,18 +1,15 @@
 <template>
-	<article class="post-preview">
-    <TagList :tags="item.frontmatter.tags" v-on:tag-click="$emit('add-tag', $event)" />
-    <router-link class="link" :to="item.path">
-      <header class="header">
+
+  <router-link class="link" :to="item.path">
+    <div class="left">
         <h2 class="title">{{ item.frontmatter.title }}</h2>
-      </header>
-      <section v-if="item.frontmatter.excerpt" class="excerpt">
-        <p>{{ item.frontmatter.excerpt }}</p>
-      </section>
-    </router-link>
-    <footer>
-      <PostMeta :post="item" />
-    </footer>
-  </article>
+        <PostMeta :post="item" />
+    </div>
+    <div class="right">
+      <!-- Tags here-->
+      <TagList :tags="item.frontmatter.tags" v-on:tag-click="$emit('add-tag', $event)" />
+    </div>
+  </router-link>
 </template>
 
 <script>
@@ -48,4 +45,10 @@ export default {
 .excerpt
   font-weight 400
   color lighten($textColor, 25%)
+
+h2
+  border-bottom: none
+  color #fff
+  font-size 22px !important
+
 </style>

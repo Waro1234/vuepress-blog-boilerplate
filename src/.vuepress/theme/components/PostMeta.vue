@@ -52,6 +52,7 @@ export default {
 
 <style lang="stylus" scoped>
 .meta
-  color #aaa
-  font-size .9rem
+  color rgba(255,255,255,.75)
+  font-size 18px
+  font-weight normal
 </style>

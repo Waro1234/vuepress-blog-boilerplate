@@ -9,7 +9,11 @@
     "build": "vuepress build src",
     "build:docs": "vuepress build docs"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^5.15.4",
+    "@fortawesome/free-regular-svg-icons": "^5.15.4",
+    "moment": "^2.29.1"
+  },
   "devDependencies": {
     "@vuepress/plugin-google-analytics": "~1.0.0-alpha.0",
     "@vuepress/theme-default": "^1.2.0",

@@ -5,6 +5,8 @@
     @touchstart="onTouchStart"
     @touchend="onTouchEnd"
   >
+
+
     <Navbar
       v-if="shouldShowNavbar"
       @toggle-sidebar="toggleSidebar"
@@ -27,7 +29,10 @@
       </template>
     </Sidebar>
 
-    <Home v-if="$page.frontmatter.home"/>
+    <Home v-if="$page.frontmatter.home"
+      :pages="$site.pages" 
+      :page-size="$site.themeConfig.pageSize" 
+      :start-page="$site.themeConfig.startPage" />
 
     <Blog
       v-else-if="$page.frontmatter.blogList"
@@ -57,11 +62,17 @@
         <slot name="page-bottom"/>
       </template>
     </Page>
+
+    
+    <div class="background-bubbles">
+      <div class="bubble1"></div>
+      <div class="bubble2"></div>
+    </div>
   </div>
 </template>
 
 <script>
-import Home from '@parent-theme/components/Home.vue'
+import Home from '../components/Home.vue'
 import Navbar from '@parent-theme/components/Navbar.vue'
 import Page from '@parent-theme/components/Page.vue'
 import Sidebar from '@parent-theme/components/Sidebar.vue'
@@ -170,3 +181,33 @@ export default {
   }
 }
 </script>
+<style lang="stylus" scoped>
+.background-bubbles
+  position: absolute;
+  width: 1135.72px;
+  height: 702.88px;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  z-index:0;
+  opacity:.7;
+
+.bubble1
+  position: absolute;
+  width: 484.23px;
+  height: 362.23px;
+  left: 0px;
+  top: 0px;
+  background: rgba(12, 255, 255, 0.5);
+  filter: blur(800px);
+
+.bubble2
+  position: absolute;
+  width: 484.23px;
+  height: 362.23px;
+  right:0px;
+  bottom:0px;
+
+  background: rgba(255, 216, 12, 0.35);
+  filter: blur(800px);
+</style>

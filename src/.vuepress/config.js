@@ -14,9 +14,9 @@ module.exports = {
 			{ text: 'Archive', link: '/archive/' },
 			{ text: 'RSS Feed', link: '/rss.xml' }
 		],
+		navbar: false,
 		logo: '/vuepress-blog-logo.png',
 		docsDir: 'src',
-		pageSize: 5,
 		startPage: 0,
 		lastUpdated: 'Last updated'
 	},
