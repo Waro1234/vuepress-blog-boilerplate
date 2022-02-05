@@ -198,7 +198,7 @@ export default {
   height: 362.23px;
   left: 0px;
   top: 0px;
-  background: rgba(12, 255, 255, 0.5);
+  background: rgba(12, 255, 255, 0.7);
   filter: blur(800px);
 
 .bubble2
@@ -208,6 +208,6 @@ export default {
   right:0px;
   bottom:0px;
 
-  background: rgba(255, 216, 12, 0.35);
+  background: rgba(255, 216, 12, 0.5);
   filter: blur(800px);
 </style>

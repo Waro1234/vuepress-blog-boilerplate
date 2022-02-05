@@ -2,7 +2,7 @@
   <ul class="list">
       <li class="list-item" v-for="tag in tags">
         <a href="#" @click="$emit('tag-click', tag)">
-          <span class="tag tag-accent">{{ tag }}</span>                
+          <span :class="getTagClass">{{ tag }}</span>                
         </a>
       </li>
     </ul>
@@ -10,7 +10,12 @@
 
 <script>
 export default {
-  props: ['tags']
+  props: ['tags'],
+  computed: {
+    getTagClass: function () {
+      return 'tag ' + this.tags.toString().toLowerCase();
+    }
+  }
 }
 </script>
 
@@ -26,15 +31,22 @@ export default {
 
 .tag
   display inline-block
-  margin-right 0.8em
-  font-size .75rem
+  font-size 16px
   font-weight 700
   line-height 1
   text-align center
   white-space nowrap
   vertical-align baseline
-  border-radius .25rem
+  border-radius 16px;
+  line-height: 32px
+  padding: 0px 16px;
 
-.tag-accent  
-  color #42b983
+.tag.personal
+  background: rgba(255,209,155,.35);
+  color: #FFD19B;
+
+.tag.crypto
+  color:#0CFFFF;
+  background: rgba(12,255,255,.35);
+
 </style>

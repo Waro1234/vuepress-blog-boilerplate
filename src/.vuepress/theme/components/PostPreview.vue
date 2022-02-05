@@ -29,26 +29,34 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+
+
 .post-preview
   margin 60px 0
 
 .link, .link:hover
-  display block
   text-decoration none !important
   color unset
+
+.link
+  margin-bottom:32px;
+  display: flex;
+  justify-content: space-between
+  align-items: center
+  border-bottom:1px solid rgba(255,255,255,.25)
+  padding-bottom:32px;
   
 .title
-  font-size 2.2rem
-  margin 0 0 0.4em
+  margin:0px !important;
+  margin-bottom:4px !important;
   padding-bottom unset
+  border-bottom: none
+  color #fff
+  font-size 18px !important
 
 .excerpt
   font-weight 400
   color lighten($textColor, 25%)
 
-h2
-  border-bottom: none
-  color #fff
-  font-size 22px !important
 
 </style>

@@ -5,7 +5,7 @@ excerpt: Here is a little bit about my post.
 type: post
 blog: true
 tags:
-    - HTML
+    - Crypto
 ---
 
 ## Hello Dr. Zoidberg

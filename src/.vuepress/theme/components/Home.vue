@@ -8,7 +8,54 @@
                 </article>
             </div>
             <div class="icon-list">
-                <div class="inner"></div>
+                <div class="inner">
+                    <a href="https://www.linkedin.com/in/stijn-klarenbeek-983188141" target="_blank">
+                        <object class="icon" :data="$withBase('svgs/linkedin-svg.svg')" type="image/svg+xml"></object>
+                    </a>
+                    <a href="https://dribbble.com/Waro" target="_blank">
+                        <object class="icon" :data="$withBase('svgs/dribbble-svg.svg')" type="image/svg+xml"></object>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search and tags -->
+        <div class="filter-heading">
+            <!-- The idea is to have an inner and an outer shell, 
+                 the outer shell has the sort button and the inner
+                 has the tags and the search bar -->
+            <div class="inner">
+                <!-- list of scrollable tags -->
+                <div class="tag-list">
+                    <span class="tag">
+                        Personal
+                    </span>
+                    <span class="tag">
+                        Crypto
+                    </span>
+                    <span class="tag">
+                        Design
+                    </span>
+                    <span class="tag">
+                        Development
+                    </span>
+                </div>
+
+                <!-- Search input -->
+                <div class="search-container">
+                    <!-- icon and input -->
+                    <object class="icon" :data="$withBase('svgs/search-svg.svg')" type="image/svg+xml"></object>
+                    <input type="search" placeholder="Search...">
+                </div>
+            </div>
+
+            <!-- something dropdown with a filter to sort by a-b and date -->
+            <div class="sort-container">
+                <div class="initiator">
+                    Sort by
+                    <!-- Add angle down icon -->
+                </div>
+                <div class="target"></div>
             </div>
         </div>
 
@@ -23,6 +70,8 @@
                 Clear filter
             </button>
         </div>
+
+
         <ul class="blog-list">
             <li v-for="(item, index) in filteredList" 
                 v-bind:key="index"
@@ -169,6 +218,90 @@ html
             
     .icon-list
         flex:1;
+        display: flex;
+        justify-content: flex-end;
+
+        .inner
+            padding-top:24px;
+            a
+                display inline-flex
+                padding-right:24px
+
+                .icon
+                    width 24px
+                    height 24px
+                    pointer-events: none;
+                
+                &:last-of-type
+                    padding-right:0px
+                    
+
+.filter-heading
+    margin: 96px 0px;
+    display: flex;
+    justify-content: center
+    align-items: center
+    height:40px;
+
+    .inner
+        display: flex;
+        height:inherit;
+        border-radius:20px;
+        flex:1;
+        background: rgba(255,255,255,.25)
+        justify-content: space-between
+        align-items: center
+        padding-right:4px;
+
+        .tag-list
+            .tag
+                display inline-block
+                padding 0 12px
+                color #fff
+                font-size: 16px
+
+        .tag-list span:first-of-type
+            margin-left 16px
+
+        .search-container
+            width:240px;
+            background: rgba(255,255,255,.25);
+            height:32px;
+            border-radius:16px;
+            display flex
+            justify-content: flex-start
+            align-items: center
+            padding-left:16px;
+            padding-right:16px;
+
+            .icon
+                width:16px;
+                height:16px;
+
+            input
+                appearance: none
+                --moz-appearance: none
+                -webkit-appearance: none
+                border: none
+                background: none
+                color: #fff
+                box-shadow: none
+                font-size: 16px; 
+                margin-left:8px;
+                width:100%;
+
+                &:focus, &focus-visible
+                    border:none
+                    box-shadow: none
+                    outline:none
+
+    .sort-container
+        box-sizing: border-box;
+        padding: 0 16px;
+
+        .initiator
+            color #fff
+            font-size: 16px
 
 .blog-list
     padding 0

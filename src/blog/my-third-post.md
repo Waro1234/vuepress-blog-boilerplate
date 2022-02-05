@@ -5,5 +5,5 @@ type: post
 blog: true
 excerpt: Hello
 tags:
-    - JavaScript
+    - Personal
 ---
