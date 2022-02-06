@@ -1,5 +1,5 @@
 ---
-title: My First Post
+title: This is me
 date: 2022-02-03 20:47:18
 type: post
 prev: false
@@ -38,14 +38,10 @@ biggest losses are made.
 
 While the above paragraphs don't lead you directly towards the steps that are needed to become a trader, without them 
 you will never succeed passed the basics of being a trader. Without knowing your limits and without knowing when to
-push and when to pull back you will always be part of that 99% of people that fail. This doesn't just go for trading but
-in owning a business in general. Know when and where to place your efforts and resources and don't let greed cloud 
-your vision that you had originally in mind. This dooms your capabilities from that point forward and you will no 
-longer be able to focus towards that what your goal was in the first place.
+push and when to pull back you will always be part of that 99% of people that fail. This doesn't just go for trading but in owning a business in general. Know when and where to place your efforts and resources and don't let greed cloud your vision that you had originally in mind. This dooms your capabilities from that point forward and you will no longer be able to focus towards that what your goal was in the first place.
 
 I know what I said here is a bit all over the place and I am not going to bother getting a proof reader because
-I do not care enough to do so. Regardless, I hope you learned something that you can use. I will write more when I find
-the time to do so.
+I do not care enough to do so. Regardless, I hope you learned something that you can use. I will write more when I find the time to do so.
 
 ~Thank you for reading,  
 Stijn

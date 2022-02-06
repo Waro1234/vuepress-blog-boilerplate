@@ -1,9 +1,7 @@
 <template>
   <ul class="list">
-      <li class="list-item" v-for="tag in tags">
-        <a href="#" @click="$emit('tag-click', tag)">
+      <li class="list-item" v-for="(tag,index) in tags" v-bind:key="'tag'+index">
           <span :class="getTagClass">{{ tag }}</span>                
-        </a>
       </li>
     </ul>
 </template>

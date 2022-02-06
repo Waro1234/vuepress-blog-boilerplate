@@ -58,5 +58,11 @@ export default {
   font-weight 400
   color lighten($textColor, 25%)
 
+@media (max-width: $MQMobileNarrow)
+  .link
+    flex-wrap: wrap
+    .right
+      width:100%;
+      margin-top 8px
 
 </style>

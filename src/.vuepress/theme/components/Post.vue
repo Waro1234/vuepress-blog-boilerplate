@@ -1,16 +1,24 @@
 <template>
   <div class="theme-default-content">
     <article>
+
+      <router-link class="go-back" to="/">
+        <span class="arrow">←</span>
+        Go home
+      </router-link>
+
       <header class="header">
-        <section>
+        <div class="left">
+          <h1 class="title">{{ $page.title }}</h1>
+          <!-- <template v-if="$page.frontmatter.excerpt">
+            <p class="excerpt">{{ $page.frontmatter.excerpt }}</p>
+          </template> -->
+          <section>
+            <PostMeta :post="$page" show-updated/>
+          </section>
+        </div>
+        <section class="right">
           <TagList :tags="$frontmatter.tags" />
-        </section>
-        <h1 class="title">{{ $page.title }}</h1>
-        <!-- <template v-if="$page.frontmatter.excerpt">
-          <p class="excerpt">{{ $page.frontmatter.excerpt }}</p>
-        </template> -->
-        <section>
-          <PostMeta :post="$page" show-updated/>
         </section>
       </header>
 
@@ -21,19 +29,15 @@
 
       <div class="page-nav" v-if="prev || next">
         <div class="inner">
-          <span v-if="prev" class="prev">
-            ←
-            <router-link v-if="prev" class="prev" :to="prev.path">
-              Previous
-            </router-link>
-          </span>
+          <router-link v-if="prev" class="prev" :to="prev.path">
+            <span class="arrow">←</span>
+            Previous
+          </router-link>
 
-          <span v-if="next" class="next">
-            <router-link v-if="next" :to="next.path">
-              Next
-            </router-link>
-            →
-          </span>
+          <router-link class="next" v-if="next" :to="next.path">
+            Next
+            <span class="arrow">→</span>
+          </router-link>
         </div>
       </div>
 
@@ -163,24 +167,63 @@ function find (page, items, offset) {
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 .body
   margin-bottom 3rem
-</style>
 
-<style lang="stylus" scoped>
 .theme-default-content:not(.custom)
-  max-width:70ch;
+  max-width:628.9px;
   padding 0
+  padding-bottom 72px //height of footer
+  padding-top 72px
+
+.go-back
+  font-size:16px;
+  text-decoration: none !important
+  color #fff
+  position relative
+
+  .arrow
+    color rgba(255,255,255,.75)
+    width: unset
+    height: unset
+    font-weight:400;
+    display: inline-block
+    margin-right:8px;
+
+  &:hover
+    text-decoration: none
+
+  &:hover:after
+    display: block
+    content: ''
+    position absolute
+    width:100%
+    left:0px
+    bottom:-4px;
+    height 2px
+    background-color rgb(12,255,255)
 
 .header
+  margin-top:1.5rem;
+  padding-top:1.5rem;
   padding-bottom 1.5rem
   margin-bottom 1.5rem
+  display: flex;
+  justify-content: space-between
+  align-items: flex-start
+
+  .left
+    flex:1;
+  .right
+    display: inline-block
+    width:auto;
+    padding-top 20px
 
 .title
-  font-size 3.2rem
+  font-size 56px
   margin 0 0 .4em
-  margin-bottom .5rem
+  margin-bottom 0
   color #fff
 
 .page-nav
@@ -205,23 +248,90 @@ function find (page, items, offset) {
     padding 0
     border-top none
     width:100%
-    max-width: 70ch
+    max-width: 628.9px
+    overflow:visible
+
+    .next,.prev
+      color #fff
+      font-weight:500;
+      position relative
+
+      .arrow
+        color rgba(255,255,255,.75)
+        width: unset
+        height: unset
+        font-weight:400;
+        display: inline-block
+
+      &:hover
+        text-decoration: none
+
+      &:hover:after
+        display: block
+        content: ''
+        position absolute
+        width:100%
+        left:0px
+        bottom:-4px;
+        height 2px
+        background-color rgb(12,255,255)
 
     .next
       margin-left: auto
 
-@media (max-width: $MQMobile)
-  .page-edit
-    .edit-link
-      margin-bottom .5rem
-    .last-updated
-      font-size .8em
-      float none
-      text-align left
+      .arrow
+        color rgba(255,255,255,.75)
+        margin-left:8px;
+    .prev
+      .arrow
+        margin-right 8px
 
-@media (max-width: $MQMobileNarrow) {
-  .title {
+@media (max-width: $MQNarrow)
+  .theme-default-content:not(.custom)
+    max-width:724.9px;
+    padding-left 48px;
+    padding-right:48px;
+    box-sizing: border-box;
+  
+  .header
+    flex-wrap: wrap
+
+    .right
+      width 100%
+
+  .page-nav
+    .inner
+      padding-left 48px;
+      padding-right:48px;
+      max-width:724.9px;
+      box-sizing: border-box;
+
+@media (max-width: $MQMobile)
+  .theme-default-content:not(.custom)
+    padding-bottom 56px
+
+  .page-nav
+    height 56px
+
+@media (max-width: $MQMobileNarrow)
+  .theme-default-content:not(.custom)
+    max-width:676.9px;
+    padding-left 24px;
+    padding-right:24px;
+    box-sizing: border-box;
+    padding-bottom 48px
+  
+  .page-nav
+    height 48px
+    
+    .inner
+      max-width:676.9px;
+      padding-left 24px;
+      padding-right:24px;
+      box-sizing: border-box;
+
+  .title 
     font-size: 2.441rem;
-  }
-}
+  
+
 </style>

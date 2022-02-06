@@ -27,18 +27,20 @@
             <div class="inner">
                 <!-- list of scrollable tags -->
                 <div class="tag-list">
-                    <span class="tag">
-                        Personal
-                    </span>
-                    <span class="tag">
-                        Crypto
-                    </span>
-                    <span class="tag">
-                        Design
-                    </span>
-                    <span class="tag">
-                        Development
-                    </span>
+                   <div class="inner-list">
+                        <span class="tag">
+                            Personal
+                        </span>
+                        <span class="tag">
+                            Crypto
+                        </span>
+                        <span class="tag">
+                            Design
+                        </span>
+                        <span class="tag">
+                            Development
+                        </span>
+                   </div>
                 </div>
 
                 <!-- Search input -->
@@ -87,24 +89,24 @@
         </ul>
 
         <div class="pagination">
-        <div>
-            <a href="#"
-            v-show="currentPage > 0" 
-            @click="previousPage"
-            class="button--pagination" 
-            >
-            Newer Posts
-            </a>
-        </div>
-        <div>
-            <a href="#"
-            v-show="currentPage < totalPages - 1"
-            @click="nextPage"
-            class="button--pagination"
-            >
-            Older Posts
-            </a>
-        </div>
+            <div>
+                <a href="#"
+                    v-show="currentPage > 0" 
+                    @click="previousPage"
+                    class="button--pagination" 
+                >
+                    Newer Posts
+                </a>
+            </div>
+            <div>
+                <a href="#"
+                    v-show="currentPage < totalPages - 1"
+                    @click="nextPage"
+                    class="button--pagination"
+                >
+                    Older Posts
+                </a>
+            </div>
         </div>
     </div>
 </template>
@@ -215,10 +217,11 @@ html
             font-size: 56px
             margin: 0
             margin-bottom:16px;
+        article
+            max-width:400px;
             
     .icon-list
-        flex:1;
-        display: flex;
+        display: inline-flex;
         justify-content: flex-end;
 
         .inner
@@ -226,15 +229,21 @@ html
             a
                 display inline-flex
                 padding-right:24px
+                opacity: .55
+                transition: 250ms
 
                 .icon
                     width 24px
                     height 24px
                     pointer-events: none;
-                
+                    
+                &:hover
+                    opacity: 1
+                    transition: 250ms
+
                 &:last-of-type
                     padding-right:0px
-                    
+                
 
 .filter-heading
     margin: 96px 0px;
@@ -252,8 +261,22 @@ html
         justify-content: space-between
         align-items: center
         padding-right:4px;
+        max-width: calc(900px - 90px);
 
         .tag-list
+            flex:1
+            overflow: hidden;
+            height:48px;
+            margin 0 24px;
+            
+            .inner-list
+                height: 90px; /* 40px - more place for scrollbar, is hidden under parent box */
+                padding-top:14px;
+                white-space: nowrap;
+                overflow-x: scroll;
+                overflow-y: hidden;
+                -webkit-overflow-scrolling: touch;
+            
             .tag
                 display inline-block
                 padding 0 12px
@@ -261,7 +284,12 @@ html
                 font-size: 16px
 
         .tag-list span:first-of-type
-            margin-left 16px
+            margin-left 0px
+            padding-left 0px
+
+        .tag-list span:last-of-type
+            padding-right:0px;
+            margin-right:0px;
 
         .search-container
             width:240px;
@@ -330,4 +358,93 @@ html
 .pagination
     display flex
     justify-content space-between
+
+
+@media (max-width: $MQNarrow)
+    .theme-default-content:not(.custom)
+        max-width:724.9px;
+        padding-left 48px;
+        padding-right:48px;
+        box-sizing: border-box;
+
+    .filter-heading
+        margin 72px 0
+
+        .inner
+            max-width: calc(628.89px - 90.07px)
+
+            .search-container
+                width 180px
+
+@media (max-width: $MQMobile)
+    .theme-default-content:not(.custom)
+        padding-bottom 56px
+        
+    .header 
+        flex-wrap:wrap;
+        .content
+            order: 2
+            h1 
+                font-size: 2.441rem !important;
+        .icon-list
+            width:100%;
+            order:1
+            justify-content: flex-start
+            .inner
+                padding-top 0
+                padding-bottom 20px
+
+    .filter-heading
+        display: block
+        height:unset
+        position relative
+        margin 56px 0
+
+        .inner
+            height: unset
+            display: block
+            width:100%;
+            max-width: unset
+            margin-right: 0px
+            background: none
+
+            .tag-list
+                background rgba(255,255,255,.25)
+                height 40px
+                margin 0
+                padding 0 24px
+                border-radius 20px
+                .inner-list
+                    padding-top:10.285px
+            
+            .search-container
+                width calc(100% - 82.07px)
+                box-sizing: border-box
+                height:40px
+                border-radius:20px
+                margin-top:16px;
+
+        .sort-container
+            position: absolute
+            right:0px;
+            bottom:0px;
+
+            .initiator
+                height 40px
+                display: flex
+                justify-content: center
+                align-items: center
+
+
+@media (max-width: $MQMobileNarrow)
+    .theme-default-content:not(.custom)
+        max-width:676.9px;
+        padding-left 24px;
+        padding-right:24px;
+        box-sizing: border-box;
+        padding-bottom 48px
+
+    .header h1 
+        font-size: 2.441rem !important;
+  
 </style>
