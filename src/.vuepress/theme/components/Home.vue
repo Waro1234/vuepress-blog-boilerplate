@@ -28,17 +28,8 @@
                 <!-- list of scrollable tags -->
                 <div class="tag-list">
                    <div class="inner-list">
-                        <span class="tag">
-                            Personal
-                        </span>
-                        <span class="tag">
-                            Crypto
-                        </span>
-                        <span class="tag">
-                            Design
-                        </span>
-                        <span class="tag">
-                            Development
+                        <span :class="{tag: true, active: tagIsActive(tag)}" v-for="(tag,index) in tags" v-bind:key="tag+index" v-on:click="toggleTag(tag)">
+                            {{tag}}
                         </span>
                    </div>
                 </div>
@@ -75,7 +66,7 @@
                 </div>
             </div>
         </div>
-
+<!-- 
         <div v-if="selectedTags.length > 0" class="filtered-heading">
 
             <h2>Filtered by {{ selectedTags.join(',') }}</h2>
@@ -86,7 +77,7 @@
             >
                 Clear filter
             </button>
-        </div>
+        </div> -->
 
 
         <ul class="blog-list">
@@ -150,7 +141,8 @@ export default {
             currentPage: Math.ceil(this.startPage / this.pageSize),
             selectedTags: [],
             dropdownactive:false,
-            activeSortClass: 'date-l-f'
+            activeSortClass: 'date-l-f',
+            tags: []
         }
     },
     computed: {
@@ -172,7 +164,7 @@ export default {
                     case "title-a-z":
                         return this.pages.filter(item => {
                             return this.inFilteredList(item);
-                        }).sort(function(a, b) {
+                        }).sort(function(b, a) {
                             if(a.title > b.title) return -1
                             if(b.title > a.title) return 1;
                             return 0
@@ -181,7 +173,7 @@ export default {
                     case "title-z-a":
                         return this.pages.filter(item => {
                             return this.inFilteredList(item);
-                        }).sort(function(b, a) {
+                        }).sort(function(a, b) {
                             if(a.title > b.title) return -1
                             if(b.title > a.title) return 1;
                             return 0
@@ -198,6 +190,24 @@ export default {
 
     mounted() {
         this.currentPage =  Math.min(Math.max(this.currentPage, 0), this.totalPages - 1)
+
+        for(var i = 0; i < this.pages.length; i++) {
+            var page = this.pages[i];
+            const isBlogPost = !!page.frontmatter.blog
+
+            if(isBlogPost){
+                for(var j = 0; j < page.frontmatter.tags.length; j++) {
+                    var tag = page.frontmatter.tags[j];
+                    const tagExists = this.tags.some(item => {
+                        return item === tag
+                    })
+
+                    if (!tagExists){
+                        this.tags = this.tags.concat(tag)
+                    }
+                }
+            }
+        }
     },
 
     methods: {
@@ -211,7 +221,7 @@ export default {
                 isCurrentLocale = item.relativePath.startsWith(localePath);   
             }
             // check if tags contain all of the selected tags
-            const hasTags = !!item.frontmatter.tags && this.selectedTags.every((tag) => item.frontmatter.tags.includes(tag))
+            const hasTags = !!item.frontmatter.tags && this.selectedTags.some((tag) => item.frontmatter.tags.includes(tag))
 
             if (!isBlogPost || !isReadyToPublish || (this.selectedTags.length > 0 && !hasTags) || !isCurrentLocale){ 
                 return false
@@ -235,7 +245,19 @@ export default {
             }
         },
         removeTag(tag) {
-            this.selectedTags.filter(t => t != tag)
+            // for(var i = 0; i < this.selectedTags)
+            for(var i = 0; i < this.selectedTags.length; i++) {
+                if(this.selectedTags[i] == tag) {
+                    this.selectedTags.splice(i,1);
+                }
+            }
+        },
+        tagIsActive(tag){
+            const tagExists = this.selectedTags.some(item => {
+                return item === tag
+            });
+
+            return tagExists;
         },
         resetTags(){
             this.selectedTags = []
@@ -246,8 +268,17 @@ export default {
         activateSort(sortMethod) {
             this.activeSortClass = sortMethod
             this.dropdownactive = !this.dropdownactive;
+        },
+        toggleTag(tag) {
+            const tagExists = this.selectedTags.some(item => {
+                return item === tag
+            })
 
-         
+            if(!tagExists) {
+                this.addTag(tag)
+            } else {
+                this.removeTag(tag)
+            }
         }
     }
 }
@@ -336,8 +367,19 @@ html
             .tag
                 display inline-block
                 padding 0 12px
-                color #fff
+                color rgba(255,255,255,.75);
                 font-size: 16px
+                text-decoration: underline transparent;
+                text-underline-offset: 4px;
+                cursor:pointer;
+                transition:250ms
+
+                &:hover,&.active
+                    color #fff
+                    font-weight bold
+                    text-decoration-color: rgb(12,255,255)
+                    transition:250ms
+                    
 
         .tag-list span:first-of-type
             margin-left 0px
