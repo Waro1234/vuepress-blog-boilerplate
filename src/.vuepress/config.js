@@ -18,7 +18,8 @@ module.exports = {
 		logo: '/vuepress-blog-logo.png',
 		docsDir: 'src',
 		startPage: 0,
-		lastUpdated: 'Last updated'
+		lastUpdated: 'Last updated',
+		searchPlaceholder: "Search title"
 	},
 	plugins: [
 		[
@@ -34,6 +35,16 @@ module.exports = {
 				site_url: 'https://vuepressblog.org',
 				filter: frontmatter => frontmatter.date <= new Date(currentDateUTC),
 				count: 20
+			}
+		],
+		[
+			'@vuepress/plugin-search',
+			{
+				locales: {
+					'/': {
+						placeholder: 'Search title',
+					},
+				},
 			}
 		],
 		'vuepress-plugin-reading-time',

@@ -12,7 +12,8 @@ module.exports = {
 			{ text: 'Home', link: '/' }, 
 			{ text: 'Learn', link: '/learn/' }
 		],
-		version: '0.11.0-beta'
+		version: '0.11.0-beta',
+		searchPlaceholder: "Search"
 	},
 	plugins: [
 		[
@@ -28,6 +29,19 @@ module.exports = {
 				site_url: 'https://www.bencodezen.io',
 				filter: frontmatter => frontmatter.date <= new Date(),
 				count: 20
+			}
+		],
+		[
+			'@vuepress/plugin-search',
+			{
+				locales: {
+					'/': {
+						placeholder: 'Search',
+					},
+					'/zh/': {
+						placeholder: '搜索',
+					},
+				},
 			}
 		]
 	],

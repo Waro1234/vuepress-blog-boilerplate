@@ -36,9 +36,7 @@
 
                 <!-- Search input -->
                 <div class="search-container">
-                    <!-- icon and input -->
-                    <object class="icon" :data="$withBase('svgs/search-svg.svg')" type="image/svg+xml"></object>
-                    <input type="search" placeholder="Search...">
+                    <SearchBox placeholder="Search"/>
                 </div>
             </div>
 
@@ -119,9 +117,13 @@
 
 <script>
 import PostPreview from './PostPreview'
+import SearchBox from '@SearchBox'
 
 export default {
-    components: { PostPreview },
+    components: { 
+        PostPreview,
+        SearchBox 
+    },
     props: {
         pages: {
             type: Array,
@@ -221,7 +223,7 @@ export default {
                 isCurrentLocale = item.relativePath.startsWith(localePath);   
             }
             // check if tags contain all of the selected tags
-            const hasTags = !!item.frontmatter.tags && this.selectedTags.some((tag) => item.frontmatter.tags.includes(tag))
+            const hasTags = !!item.frontmatter.tags && this.selectedTags.every((tag) => item.frontmatter.tags.includes(tag))
 
             if (!isBlogPost || !isReadyToPublish || (this.selectedTags.length > 0 && !hasTags) || !isCurrentLocale){ 
                 return false
@@ -391,18 +393,22 @@ html
 
         .search-container
             width:240px;
-            background: rgba(255,255,255,.25);
             height:32px;
             border-radius:16px;
             display flex
             justify-content: flex-start
             align-items: center
-            padding-left:16px;
-            padding-right:16px;
+            padding-left:0;
+            padding-right:0px;
 
             .icon
                 width:16px;
                 height:16px;
+
+            .search-box
+                display: block;
+                margin-right: 0;
+                width:240px;
 
             input
                 appearance: none
@@ -476,7 +482,6 @@ html
                         span
                             color: rgba(12,255,255,.75);
 
-
 .blog-list
     padding 0
     margin 0
@@ -527,6 +532,7 @@ html
         padding-bottom 56px
         
     .header 
+
         flex-wrap:wrap;
         .content
             order: 2
@@ -569,6 +575,9 @@ html
                 height:40px
                 border-radius:20px
                 margin-top:16px;
+                
+                .search-box
+                    width:100%;
 
         .sort-container
             position: absolute

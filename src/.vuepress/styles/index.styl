@@ -23,6 +23,55 @@ article
     z-index: 1;
     padding-top 72px
 }
+.search-box input {
+  width: 100% !important;
+  height: 32px !important;
+  color: #fff !important;
+  display: inline-block;
+  border: none !important;
+  border-radius: 2rem;
+  font-size: 16px !important;
+  line-height: unset !important;
+  padding: 0 !important;
+  padding-left: 40px !important;
+  outline: none;
+  transition: all 0.2s ease;
+  background: rgba(255,255,255,.25) url(/assets/img/search.83621669.svg) 16px 10px no-repeat !important;
+  background-size: 1rem;
+  box-sizing: border-box;
+}
+
+.search-box .suggestions{
+  right:-2px;
+  border:none !important;
+  background: rgba(255,255,255,.25) !important;
+  backdrop-filter: blur(10px);
+  padding:0px !important;
+}
+
+
+.search-box 
+  .suggestion
+    line-height:40px !important;
+    padding 0px !important
+    padding-left:16px !important;
+    a 
+      .page-title
+        font-weight: 400 !important;
+        color:#fff;
+        font-size:16px !important;
+
+.search-box .suggestion.focused {
+  background: rgba(12,255,255,.25) !important;
+
+  a {
+    .page-title {
+      color: #0CFFFF !important;
+      font-weight: 500 !important;
+    }
+  }
+}
+
 
 input[type=search]::-ms-clear { display: none; width : 0; height: 0; }
 input[type=search]::-ms-reveal { display: none; width : 0; height: 0; }
@@ -47,3 +96,24 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
   color: rgba(255,255,255,.75);
   font-style: italic
 }
+
+@media (max-width: $MQNarrow) and (min-width: $MQMobile)
+  .search-box .suggestions
+    right: -2px !important;
+    left:unset !important;
+    width:542px !important;
+    overflow: hidden !important;
+
+  .search-box input
+    border-radius:20px !important;
+
+
+@media (max-width: $MQMobile)
+  .search-box  .suggestions
+    width: 100% !important;
+
+  .search-box input
+    left: 0px !important
+    height: 40px !important
+    background: rgba(255,255,255,0.25) url(/assets/img/search.83621669.svg) 24px 14px no-repeat !important;
+    padding-left 48px !important;
