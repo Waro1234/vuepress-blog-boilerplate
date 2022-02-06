@@ -6,9 +6,9 @@
           <TagList :tags="$frontmatter.tags" />
         </section>
         <h1 class="title">{{ $page.title }}</h1>
-        <template v-if="$page.frontmatter.excerpt">
+        <!-- <template v-if="$page.frontmatter.excerpt">
           <p class="excerpt">{{ $page.frontmatter.excerpt }}</p>
-        </template>
+        </template> -->
         <section>
           <PostMeta :post="$page" show-updated/>
         </section>
@@ -18,49 +18,23 @@
         <Content class="body" :custom="false"/>
       </section>
 
-      <div class="page-edit">
-        <div
-          class="edit-link"
-          v-if="editLink"
-        >
-          <a
-            :href="editLink"
-            target="_blank"
-            rel="noopener noreferrer"
-          >{{ editLinkText }}</a>
-          <OutboundLink/>
-        </div>
-      </div>
 
       <div class="page-nav" v-if="prev || next">
-        <p class="inner">
-          <span
-            v-if="prev"
-            class="prev"
-          >
+        <div class="inner">
+          <span v-if="prev" class="prev">
             ←
-            <router-link
-              v-if="prev"
-              class="prev"
-              :to="prev.path"
-            >
-              {{ prev.title || prev.path }}
+            <router-link v-if="prev" class="prev" :to="prev.path">
+              Previous
             </router-link>
           </span>
 
-          <span
-            v-if="next"
-            class="next"
-          >
-            <router-link
-              v-if="next"
-              :to="next.path"
-            >
-              {{ next.title || next.path }}
+          <span v-if="next" class="next">
+            <router-link v-if="next" :to="next.path">
+              Next
             </router-link>
             →
           </span>
-        </p>
+        </div>
       </div>
 
       <slot name="bottom"/>
@@ -195,6 +169,9 @@ function find (page, items, offset) {
 </style>
 
 <style lang="stylus" scoped>
+.theme-default-content:not(.custom)
+  max-width:70ch;
+  padding 0
 
 .header
   padding-bottom 1.5rem
@@ -204,25 +181,34 @@ function find (page, items, offset) {
   font-size 3.2rem
   margin 0 0 .4em
   margin-bottom .5rem
+  color #fff
 
-.excerpt
-  font-size 1.2rem
-  color lighten($textColor, 25%)
-  margin 0 0 .5em
-  line-height 1.4em
-  margin-bottom 1rem
+.page-nav
+  position fixed
+  bottom 0px
+  width 100%
+  height 72px
+  display flex
+  justify-content center
+  align-items: center
+  left 0px
+  max-width: unset
+  margin 0
+  padding 0
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
 
-.page-edit
-  padding-top 1rem
-  padding-bottom 1rem
-  padding-left 0
-  padding-right 0
-  overflow auto
-  .edit-link
-    display inline-block
-    a
-      color lighten($textColor, 25%)
-      margin-right .25rem
+  .inner
+    display: flex
+    justify-content: space-between
+    margin 0
+    padding 0
+    border-top none
+    width:100%
+    max-width: 70ch
+
+    .next
+      margin-left: auto
 
 @media (max-width: $MQMobile)
   .page-edit

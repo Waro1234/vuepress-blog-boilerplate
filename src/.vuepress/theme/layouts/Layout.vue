@@ -183,7 +183,7 @@ export default {
 </script>
 <style lang="stylus" scoped>
 .background-bubbles
-  position: absolute;
+  position: fixed;
   width: 1135.72px;
   height: 702.88px;
   top:50%;
