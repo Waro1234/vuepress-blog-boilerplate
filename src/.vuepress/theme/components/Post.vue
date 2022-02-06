@@ -321,6 +321,10 @@ function find (page, items, offset) {
     box-sizing: border-box;
     padding-bottom 48px
   
+  .header
+    .right
+      padding-top 8px
+
   .page-nav
     height 48px
     

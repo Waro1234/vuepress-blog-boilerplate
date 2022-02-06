@@ -53,11 +53,26 @@
 
             <!-- something dropdown with a filter to sort by a-b and date -->
             <div class="sort-container">
-                <div class="initiator">
+                <div class="initiator" v-on:click="toggleDropdown()">
                     Sort by
                     <!-- Add angle down icon -->
                 </div>
-                <div class="target"></div>
+                <div class="target" v-if="dropdownactive">
+                    <ul>
+                        <li :class="{active : activeSortClass == 'date-l-f'}"  v-on:click="activateSort('date-l-f')">
+                            Date <span>(L &mdash; F)</span>
+                        </li>
+                        <li :class="{active : activeSortClass == 'date-f-l'}"  v-on:click="activateSort('date-f-l')">
+                            Date <span>(F &mdash; L)</span>
+                        </li>
+                        <li :class="{active : activeSortClass == 'title-a-z'}"  v-on:click="activateSort('title-a-z')">
+                            Title <span>(A &mdash; Z)</span>
+                        </li>
+                        <li :class="{active : activeSortClass == 'title-z-a'}" v-on:click="activateSort('title-z-a')">
+                            Title <span>(Z &mdash; A)</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
@@ -133,32 +148,45 @@ export default {
     data() {
         return {
             currentPage: Math.ceil(this.startPage / this.pageSize),
-            selectedTags: []
+            selectedTags: [],
+            dropdownactive:false,
+            activeSortClass: 'date-l-f'
         }
     },
     computed: {
         filteredList() {
             if (this.pages) {
                 
-                return this.pages.filter(item => {
-                    const isBlogPost = !!item.frontmatter.blog
-                    const isReadyToPublish = new Date(item.frontmatter.date) <= new Date()
-                     // check for locales
-                    let isCurrentLocale = true;
-                    if(this.$site.locales) {
-                        const localePath = this.$route.path.split('/')[1] || "";
-                        isCurrentLocale = item.relativePath.startsWith(localePath);   
-                    }
-                    // check if tags contain all of the selected tags
-                    const hasTags = !!item.frontmatter.tags && this.selectedTags.every((tag) => item.frontmatter.tags.includes(tag))
+                //Do sorting here
+                switch(this.activeSortClass) {
+                    case "date-l-f":
+                        return this.pages.filter(item => {
+                            return this.inFilteredList(item);
+                        }).sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date))
 
-                    if (!isBlogPost || !isReadyToPublish || (this.selectedTags.length > 0 && !hasTags) || !isCurrentLocale){ 
-                        return false
-                    }
+                    case "date-f-l":
+                        return this.pages.filter(item => {
+                            return this.inFilteredList(item);
+                        }).sort((a, b) => new Date(a.frontmatter.date) - new Date(b.frontmatter.date))
 
-                    return true
-                    
-                }).sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date))
+                    case "title-a-z":
+                        return this.pages.filter(item => {
+                            return this.inFilteredList(item);
+                        }).sort(function(a, b) {
+                            if(a.title > b.title) return -1
+                            if(b.title > a.title) return 1;
+                            return 0
+                        })
+
+                    case "title-z-a":
+                        return this.pages.filter(item => {
+                            return this.inFilteredList(item);
+                        }).sort(function(b, a) {
+                            if(a.title > b.title) return -1
+                            if(b.title > a.title) return 1;
+                            return 0
+                        })
+                }
             }
         },
 
@@ -173,6 +201,24 @@ export default {
     },
 
     methods: {
+        inFilteredList(item) {
+            const isBlogPost = !!item.frontmatter.blog
+            const isReadyToPublish = new Date(item.frontmatter.date) <= new Date()
+                // check for locales
+            let isCurrentLocale = true;
+            if(this.$site.locales) {
+                const localePath = this.$route.path.split('/')[1] || "";
+                isCurrentLocale = item.relativePath.startsWith(localePath);   
+            }
+            // check if tags contain all of the selected tags
+            const hasTags = !!item.frontmatter.tags && this.selectedTags.every((tag) => item.frontmatter.tags.includes(tag))
+
+            if (!isBlogPost || !isReadyToPublish || (this.selectedTags.length > 0 && !hasTags) || !isCurrentLocale){ 
+                return false
+            }
+
+            return true
+        },
         nextPage() {
             this.currentPage = this.currentPage >= this.totalPages - 1 ? this.totalPages - 1 : this.currentPage + 1
         },
@@ -193,6 +239,15 @@ export default {
         },
         resetTags(){
             this.selectedTags = []
+        },
+        toggleDropdown() {
+            this.dropdownactive = !this.dropdownactive;
+        },
+        activateSort(sortMethod) {
+            this.activeSortClass = sortMethod
+            this.dropdownactive = !this.dropdownactive;
+
+         
         }
     }
 }
@@ -217,6 +272,7 @@ html
             font-size: 56px
             margin: 0
             margin-bottom:16px;
+            
         article
             max-width:400px;
             
@@ -326,10 +382,58 @@ html
     .sort-container
         box-sizing: border-box;
         padding: 0 16px;
+        position: relative
 
         .initiator
             color #fff
             font-size: 16px
+            cursor:pointer
+            transition:250ms
+
+            &:hover
+                font-size:17px;
+                transition:250ms
+
+        .target
+            width:200px;
+            position: absolute
+            background:black;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            border-radius:8px;
+            right:0
+            top: calc(100% + 12px)
+            overflow: hidden
+
+            ul
+                line-height:unset
+                padding:0;
+                margin 0
+                list-style-type:none;
+
+                li
+                    color:rgba(255,255,255,1);
+                    line-height 40px
+                    font-size: 16px
+                    padding-left 16px;
+                    font-weight:400
+                    cursor:pointer
+                    transition:250ms;
+
+                    span
+                        display:inline-block
+                        color: rgba(255,255,255,.75)
+                        margin-left 8px
+                        font-size 14px
+
+                    &:hover, &.active
+                        color:#0CFFFF;
+                        background: rgba(12,255,255,.35);
+                        transition:250ms;
+
+                        span
+                            color: rgba(12,255,255,.75);
+
 
 .blog-list
     padding 0
@@ -444,7 +548,10 @@ html
         box-sizing: border-box;
         padding-bottom 48px
 
-    .header h1 
-        font-size: 2.441rem !important;
+    .header 
+        margin-top:0px;
+
+        h1 
+            font-size: 2.441rem !important;
   
 </style>

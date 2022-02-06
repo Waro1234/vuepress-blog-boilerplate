@@ -79,7 +79,6 @@ export function resolvePage(pages, rawPath, base) {
 }
 
 function resolvePath(relative, base, append) {
-	console.log(relative)
 	const firstChar = relative.charAt(0)
 	if (firstChar === '/') {
 		return relative
