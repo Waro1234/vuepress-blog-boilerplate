@@ -14,7 +14,7 @@
             <p class="excerpt">{{ $page.frontmatter.excerpt }}</p>
           </template> -->
           <section>
-            <PostMeta :post="$page" show-updated/>
+            <PostMeta :post="$page"/>
           </section>
         </div>
         <section class="right">
