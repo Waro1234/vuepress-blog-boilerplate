@@ -191,7 +191,7 @@ export default {
   top 0
   left 0
   z-index:0;
-  opacity:.7;
+  // opacity:.7;
 
 .bubble1
   position: absolute;
