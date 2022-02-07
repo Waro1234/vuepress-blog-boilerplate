@@ -46,10 +46,10 @@
                 <div class="target" v-if="dropdownactive">
                     <ul>
                         <li :class="{active : activeSortClass == 'date-l-f'}"  v-on:click="activateSort('date-l-f')">
-                            Date <span>(L &mdash; F)</span>
+                            Date <span>(New &mdash; Old)</span>
                         </li>
                         <li :class="{active : activeSortClass == 'date-f-l'}"  v-on:click="activateSort('date-f-l')">
-                            Date <span>(F &mdash; L)</span>
+                            Date <span>(Old &mdash; New)</span>
                         </li>
                         <li :class="{active : activeSortClass == 'title-a-z'}"  v-on:click="activateSort('title-a-z')">
                             Title <span>(A &mdash; Z)</span>
