@@ -114,7 +114,7 @@
 
 <script>
 import PostPreview from './PostPreview'
-import SearchBox from '@SearchBox'
+import SearchBox from './VueSearch/Searchbox'
 
 export default {
     components: { 

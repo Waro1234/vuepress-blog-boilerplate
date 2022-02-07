@@ -4,16 +4,10 @@ module.exports = {
 	title: 'My Daily draft',
 	dest: './public',
 	themeConfig: {
-		repo: 'https://wwww.github.com',
-		repoLabel: 'Repo',
-		editLinks: true,
-		editLinkText: 'Found a bug? Help me improve this page!',
-		nav: [
-			{ text: 'Home', link: '/' }, 
-			{ text: 'Blog', link: '/blog/' },
-			{ text: 'Archive', link: '/archive/' },
-			{ text: 'RSS Feed', link: '/rss.xml' }
-		],
+		sidebar: false,
+		// nav: [
+		// 	{ text: 'Home', link: '/' }
+		// ],
 		navbar: false,
 		logo: '/vuepress-blog-logo.png',
 		docsDir: 'src',
