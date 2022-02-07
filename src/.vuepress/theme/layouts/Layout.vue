@@ -200,6 +200,7 @@ export default {
   top: 0px;
   background: rgba(12, 255, 255, 0.7);
   filter: blur(800px);
+  -webkit-filter blur(800px)
 
 .bubble2
   position: absolute;
@@ -210,4 +211,5 @@ export default {
 
   background: rgba(255, 216, 12, 0.5);
   filter: blur(800px);
+  -webkit-filter blur(800px)
 </style>
