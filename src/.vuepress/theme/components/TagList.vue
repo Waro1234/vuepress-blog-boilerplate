@@ -1,7 +1,7 @@
 <template>
   <ul class="list">
       <li class="list-item" v-for="(tag,index) in tags" v-bind:key="'tag'+index">
-          <span :class="getTagClass">{{ tag }}</span>                
+          <span :class="getTagClass(tag)">{{ tag }}</span>                
       </li>
     </ul>
 </template>
@@ -9,9 +9,13 @@
 <script>
 export default {
   props: ['tags'],
-  computed: {
-    getTagClass: function () {
-      return 'tag ' + this.tags.toString().toLowerCase();
+  methods: {
+    getTagClass: function (tag) {
+      // var tagString = "";
+      // for(var i = 0; i < this.tags.length; i++) {
+      //   tagString += this.tags[i].toLowerCase() + " ";
+      // }
+      return 'tag ' + tag.toString().toLowerCase();
     }
   }
 }
@@ -24,8 +28,12 @@ export default {
   margin 0
   padding 0
 
+.list li:last-of-type
+  margin-right 0 !important
+
 .list-item
-  margin-right 4px
+  margin-right 8px
+
 
 .tag
   display inline-block
@@ -46,5 +54,10 @@ export default {
 .tag.crypto
   color:#0CFFFF;
   background: rgba(12,255,255,.35);
+
+.tag.development
+  background: rgba(155,231,255,.35);
+  color:#9BE7FF;
+
 
 </style>

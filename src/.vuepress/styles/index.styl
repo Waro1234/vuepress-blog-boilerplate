@@ -9,6 +9,22 @@
 html 
     background-color: black
 
+#nprogress .bar {
+  background: #FFBB00 !important;
+  display: none;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px #FFBB00, 0 0 5px #FFBB00;
+  display: none;
+}
+
+#nprogress .spinner-icon {
+  border-top-color: #FFBB00;
+  border-left-color: #FFBB00;
+  display: none;
+}
+
 .theme-container
     background-color: black
 
@@ -117,3 +133,35 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
     height: 40px !important
     background: rgba(255,255,255,0.25) url(/assets/img/search.83621669.svg) 24px 14px no-repeat !important;
     padding-left 48px !important;
+
+
+/**Post page**/
+.content__default h3 
+  margin-bottom: 4px;
+  margin-top 40px !important
+  color:#fff;
+
+.content__default h4
+  margin-bottom: 4px
+  color #fff;
+
+.content__default h3 + p, .content__default h3 + ul, .content__default h4 + p, .content__default h4 + ul
+  margin-top:0px;
+
+.content__default blockquote
+  border-left: 3px solid rgba(12,255,255,1);
+  font-size:18px;
+  color rgba(255,255,255,.55)
+  margin-bottom 40px
+
+  h4
+    margin-top 0 !important
+
+.content__default img
+  margin-top 24px
+
+.content__default sup, .content__default sub
+  font-style: italic
+
+.content__default a.header-anchor
+  display: none

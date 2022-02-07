@@ -9,8 +9,8 @@
             </div>
             <div class="icon-list">
                 <div class="inner">
-                    <a href="https://www.linkedin.com/in/stijn-klarenbeek-983188141" target="_blank">
-                        <object class="icon" :data="$withBase('svgs/linkedin-svg.svg')" type="image/svg+xml"></object>
+                    <a href="https://twitter.com/warobusiness" target="_blank">
+                        <object class="icon" :data="$withBase('svgs/twitter-svg.svg')" type="image/svg+xml"></object>
                     </a>
                     <a href="https://dribbble.com/Waro" target="_blank">
                         <object class="icon" :data="$withBase('svgs/dribbble-svg.svg')" type="image/svg+xml"></object>

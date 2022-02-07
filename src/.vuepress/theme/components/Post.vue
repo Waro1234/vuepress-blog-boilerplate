@@ -221,9 +221,11 @@ function find (page, items, offset) {
     padding-top 20px
 
 .title
-  font-size 56px
+  font-size 48px
   margin 0 0 .4em
   margin-bottom 0
+  padding-right 16px
+  box-sizing: border-box
   color #fff
 
 .page-nav
@@ -238,6 +240,7 @@ function find (page, items, offset) {
   max-width: unset
   margin 0
   padding 0
+  z-index:2;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(8px);
 
@@ -298,6 +301,7 @@ function find (page, items, offset) {
 
     .right
       width 100%
+      padding-top 12px
 
   .page-nav
     .inner
