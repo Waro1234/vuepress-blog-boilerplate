@@ -33,7 +33,7 @@
 
                 <!-- Search input -->
                 <div class="search-container">
-                    <SearchBox placeholder="Search"/>
+                    <VueSearch placeholder="Search"/>
                 </div>
             </div>
 
@@ -114,12 +114,12 @@
 
 <script>
 import PostPreview from './PostPreview'
-import SearchBox from './VueSearch/Searchbox'
+import VueSearch from './VueSearch/VueSearch'
 
 export default {
     components: { 
         PostPreview,
-        SearchBox 
+        VueSearch 
     },
     props: {
         pages: {

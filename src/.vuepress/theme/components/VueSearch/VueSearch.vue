@@ -45,7 +45,7 @@ import matchQuery from './match-query'
 
 /* global SEARCH_MAX_SUGGESTIONS, SEARCH_PATHS, SEARCH_HOTKEYS */
 export default {
-  name: 'SearchBox',
+  name: 'VueSearch',
 
   data () {
     return {
