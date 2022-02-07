@@ -18,7 +18,6 @@
     "vuepress": "~1.0.0-alpha.30",
     "vuepress-plugin-janitor": "1.0.0",
     "vuepress-plugin-reading-time": "0.1.1",
-    "vuepress-plugin-rss": "2.0.0",
     "yaml-front-matter": "4.0.0"
   }
 }

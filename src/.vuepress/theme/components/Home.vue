@@ -12,9 +12,6 @@
                     <a href="https://twitter.com/warobusiness" target="_blank">
                         <object class="icon" :data="$withBase('svgs/twitter-svg.svg')" type="image/svg+xml"></object>
                     </a>
-                    <a href="https://dribbble.com/Waro" target="_blank">
-                        <object class="icon" :data="$withBase('svgs/dribbble-svg.svg')" type="image/svg+xml"></object>
-                    </a>
                 </div>
             </div>
         </div>
