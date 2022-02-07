@@ -64,10 +64,10 @@
     </Page>
 
     
-    <!-- <div class="background-bubbles">
-      <div class="bubble1"></div>
-      <div class="bubble2"></div>
-    </div> -->
+    <div class="background-bubbles">
+      <!-- <div class="bubble1"></div> -->
+      <!-- <div class="bubble2"></div> -->
+    </div>
   </div>
 </template>
 
@@ -184,11 +184,12 @@ export default {
 <style lang="stylus" scoped>
 .background-bubbles
   position: fixed;
-  width: 1135.72px;
-  height: 702.88px;
-  top:50%;
-  left:50%;
-  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: #000 url(/assets/background.png) center center no-repeat fixed !important;
+  background-size:cover;
+  top 0
+  left 0
   z-index:0;
   opacity:.7;
 
