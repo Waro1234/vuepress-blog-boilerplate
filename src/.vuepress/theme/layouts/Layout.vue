@@ -64,10 +64,10 @@
     </Page>
 
     
-    <!-- <div class="background-bubbles">
+    <div class="background-bubbles">
       <div class="bubble1"></div>
       <div class="bubble2"></div>
-    </div> -->
+    </div>
   </div>
 </template>
 
