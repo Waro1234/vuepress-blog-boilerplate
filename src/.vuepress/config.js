@@ -12,6 +12,7 @@ module.exports = {
 		logo: '/vuepress-blog-logo.png',
 		docsDir: 'src',
 		startPage: 0,
+		pageSize: 100,
 		lastUpdated: 'Last updated',
 		searchPlaceholder: "Search title"
 	},
