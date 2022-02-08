@@ -59,5 +59,8 @@ export default {
   background: rgba(155,231,255,.35);
   color:#9BE7FF;
 
+.tag.design
+  color:#A39BFF;
+  background: rgba(163,155,255,.35);
 
 </style>

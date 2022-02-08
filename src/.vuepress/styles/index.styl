@@ -166,8 +166,8 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
   margin-bottom: 4px
   color #fff;
 
-.content__default h3 + p, .content__default h3 + ul, .content__default h4 + p, .content__default h4 + ul
-  margin-top:0px;
+.content__default h3 + *,.content__default h4 + *
+  margin-top:0px !important;
 
 .content__default blockquote
   border-left: 3px solid rgba(12,255,255,1);
@@ -186,3 +186,9 @@ input[type="search"]::-webkit-search-results-decoration { display: none; }
 
 .content__default a.header-anchor
   display: none
+
+.content__default a
+  color: #0cffff !important;
+
+  svg
+    display: none
