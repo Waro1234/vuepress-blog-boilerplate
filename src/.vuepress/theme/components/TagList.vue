@@ -63,4 +63,8 @@ export default {
   color:#A39BFF;
   background: rgba(163,155,255,.35);
 
+.tag.cx13
+  color: #9BC3FF;
+  background: rgba(155,195,255,.35);
+
 </style>
